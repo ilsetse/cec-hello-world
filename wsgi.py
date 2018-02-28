@@ -16,28 +16,9 @@ def hello():
      
       logging.basicConfig(filename='example.log',level=logging.DEBUG)
       logging.info(pod_hostname + ' ' + cur_time + '\n')
-      #logger=logging.getLogger(__name__)
-      #logger.setLevel(loggin.NOTICE)
 
-      # file handler
-      #handler = logging.FileHandler(os.path.join(os.environ.get('OPENSHIFT_DATA_DIR','app.log')))
-      #handler.setLevel(logging.NOTICE)
-
-      # create logging format
-      #formatter = logging.Formatter('%(asctime)s')
-      #handler.setFormatter(formatter)
-
-      # add handlers to logger
-      #logger.addHandler(handler)
-      
-      
-      #logging.basicConfig(format=FORMAT,level=NOTICE)
-      #handler = logging.FileHandler(logfile_name)
-      #handler.setLevel(logging.notice)
-
-
-      #print($OPENSHIFT_DATA_DIR)
-      oc_log = sys.executable
+      ex  = open('example.log', 'r')
+      oc_log = ex.readline()
 
       return render_template('hello.html',
                           pod_hostname=pod_hostname,
