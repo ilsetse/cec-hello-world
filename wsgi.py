@@ -18,8 +18,7 @@ def hello():
       logging.info(pod_hostname + ' ' + cur_time + '\n')
       ex  = open(pvc1, 'r')
       oc_log = ex.readline()
-      return "Hello World! Greetings from " + socket.gethostname() + 
-                  "   Log: " + oc_log + "\n"
+      return "Hello World! Greetings from " + socket.gethostname() + "   Log: " + oc_log + "\n"
     except:
       pass
 
