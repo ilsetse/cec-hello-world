@@ -18,7 +18,7 @@ def hello():
       logging.info(pod_hostname + ' ' + cur_time + '\n')
 
       ex  = open('example.log', 'r')
-      oc_log = ex.readline()
+      oc_log = ex.read()
 
       return render_template('hello.html',
                           pod_hostname=pod_hostname,
