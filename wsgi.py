@@ -1,10 +1,9 @@
 import socket
 import os
-import sys
 import time
 import logging
 
-from flask import Flask
+from flask import Flask, render_template
 
 application = Flask(__name__)
 
@@ -18,8 +17,12 @@ def hello():
       logging.info(pod_hostname + ' ' + cur_time + '\n')
       ex  = open(pvc1, 'r')
       oc_log = ex.readline()
-      return "Hello World! Greetings from " + socket.gethostname() + "   Log: " + oc_log + "\n"
+      return render_template('hello.html',
+                          pod_hostname=pod_hostname,
+                          cur_time=cur_time)
+                          log=oc_log)
     except:
+      return "Hello World! Greetings from " + socket.gethostname() + "\n"
       pass
 
 
