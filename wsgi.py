@@ -13,11 +13,12 @@ def hello():
     try:
       pod_hostname = socket.gethostname()
       cur_time = time.ctime()
-     
-      logging.basicConfig(filename='example.log',level=logging.DEBUG)
+    
+      pvc1 = os.path.join(os.environ.get('OPENSHIFT_DATA_DIR'),'app.log')
+      logging.basicConfig(filename=pvc1,level=logging.DEBUG)
       logging.info(pod_hostname + ' ' + cur_time + '\n')
 
-      ex  = open('example.log', 'r')
+      ex  = open(pvc1, 'r')
       oc_log = ex.readline()
 
       return render_template('hello.html',
