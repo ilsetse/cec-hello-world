@@ -4,7 +4,7 @@ import sys
 import time
 import logging
 
-from flask import Flask, render_template
+from flask import Flask
 
 application = Flask(__name__)
 
@@ -13,19 +13,13 @@ def hello():
     try:
       pod_hostname = socket.gethostname()
       cur_time = time.ctime()
-    
       pvc1 = os.path.join(os.environ.get('OPENSHIFT_DATA_DIR'),'app.log')
-      logging.basicConfig(filename=pvc1,level=logging.DEBUG, format='%(asctime)s')
+      logging.basicConfig(filename=pvc1,level=logging.DEBUG)
       logging.info(pod_hostname + ' ' + cur_time + '\n')
-
       ex  = open(pvc1, 'r')
       oc_log = ex.readline()
-
-      return "Hello World! Greetings from " + socket.gethostname() + oc_log + "\n"
-      #return render_template('hello.html',
-                          #pod_hostname=pod_hostname,
-                          #cur_time=cur_time,
-                          #log=oc_log) 
+      return "Hello World! Greetings from " + socket.gethostname() + 
+                  "   Log: " + oc_log + "\n"
     except:
       pass
 
