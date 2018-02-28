@@ -15,18 +15,18 @@ def hello():
       cur_time = time.ctime()
     
       pvc1 = os.path.join(os.environ.get('OPENSHIFT_DATA_DIR'),'app.log')
-      logging.basicConfig(filename=pvc1,level=logging.DEBUG)
+      logging.basicConfig(filename=pvc1,level=logging.DEBUG, format='%(asctime)s')
       logging.info(pod_hostname + ' ' + cur_time + '\n')
 
       ex  = open(pvc1, 'r')
       oc_log = ex.readline()
 
-      return render_template('hello.html',
-                          pod_hostname=pod_hostname,
-                          cur_time=cur_time,
-                          log=oc_log) 
+      return "Hello World! Greetings from " + socket.gethostname() + oc_log + "\n"
+      #return render_template('hello.html',
+                          #pod_hostname=pod_hostname,
+                          #cur_time=cur_time,
+                          #log=oc_log) 
     except:
-      return "Hello World! Greetings from "+socket.gethostname() + "\n"
       pass
 
 
