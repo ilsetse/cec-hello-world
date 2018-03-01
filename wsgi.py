@@ -13,7 +13,9 @@ def hello():
     try:
       pod_hostname = socket.gethostname()
       cur_time = time.ctime()
-    
+
+      # set to persistent storage
+      # oc set env dc/cec-project OPENSHIFT_DATA_DIR=/mnt 
       pvc1 = os.path.join(os.environ.get('OPENSHIFT_DATA_DIR'),'app.log')
       logging.basicConfig(filename=pvc1,level=logging.DEBUG)
       logging.info(pod_hostname + ' ' + cur_time + '\n')
